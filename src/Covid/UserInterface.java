@@ -9,17 +9,39 @@ import java.io.IOException;
 import java.util.*;
 
 public class UserInterface {
+    FileHandler fileHandler = new FileHandler();
+    ArrayList<Covid19Data> arrayList;
+
+     {
+        try {
+            arrayList = fileHandler.loadData();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void PrintData(){
+        for (Covid19Data covid19DataList : arrayList) {
+            System.out.println("region: " + covid19DataList.getRegion() +
+                    "\nAldersgruppe: " + covid19DataList.getAldersgruppe() +
+                    "\nBekræftede tilfælde: " + covid19DataList.getBekræftedeTilfælde() +
+                    "\nDøde: " + covid19DataList.getDøde() +
+                    "\nIndlagte på intensiv: " + covid19DataList.getIndlagtIntensiv() +
+                    "\nIndlagte : " + covid19DataList.getIndlagt() +
+                    "\nDato : " + covid19DataList.getDato() +
+                    "\n----------------------\n");
+        }
+    }
 
 
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         FileHandler fileHandler = new FileHandler();
         ArrayList<Covid19Data> arrayList = fileHandler.loadData();
-
         Collections.sort(arrayList, new RegionComparator());
-        System.out.println("--------------------\n" +
+        System.out.println("-------------------------\n" +
                 "Menu: Covid 19 database!\n" +
-                "--------------------\n" +
+                "-------------------------\n" +
                 "select number in menu:\n" +
                 "1. Show covid19 data list\n" +
                 "2. Sort data Region\n" +
@@ -27,56 +49,15 @@ public class UserInterface {
                 "4. Exit program");
         int userChoise = sc.nextInt();
         if (userChoise == 1) {
-            Collections.sort(arrayList, new RegionComparator());
-            for (Covid19Data covid19DataList : arrayList) {
-                System.out.println("region: " + covid19DataList.getRegion() +
-                        "\nBekræftede tilfælde: " + covid19DataList.getBekræftedeTilfælde() +
-                        "\nDøde: " + covid19DataList.getDøde() +
-                        "\nIndlagte på intensiv: " + covid19DataList.getIndlagtIntensiv() +
-                        "\nIndlagte : " + covid19DataList.getIndlagt() +
-                        "\nDato : " + covid19DataList.getDato() +
-                        "\n----------------------");
-
-            }
+            PrintData();
 
         } else if  (userChoise == 2) {
             Collections.sort(arrayList, new RegionComparator());
-            for (Covid19Data covid19DataList : arrayList) {
-                System.out.println("region: " + covid19DataList.getRegion() +
-                        "\nBekræftede tilfælde: " + covid19DataList.getBekræftedeTilfælde() +
-                        "\nDøde: " + covid19DataList.getDøde() +
-                        "\nIndlagte på intensiv: " + covid19DataList.getIndlagtIntensiv() +
-                        "\nIndlagte : " + covid19DataList.getIndlagt() +
-                        "\nDato : " + covid19DataList.getDato() +
-                        "\n----------------------");
-
-            }
+            PrintData();
 
         } else if  (userChoise == 3){
             Collections.sort(arrayList, new RegionComparator());
-            for (Covid19Data covid19DataList : arrayList) {
-                System.out.println("region: " + covid19DataList.getRegion() +
-                        "\nBekræftede tilfælde: " + covid19DataList.getBekræftedeTilfælde() +
-                        "\nDøde: " + covid19DataList.getDøde() +
-                        "\nIndlagte på intensiv: " + covid19DataList.getIndlagtIntensiv() +
-                        "\nIndlagte : " + covid19DataList.getIndlagt() +
-                        "\nDato : " + covid19DataList.getDato() +
-                        "\n----------------------");
-
-            }
-
-        } else if  (userChoise == 3){
-            Collections.sort(arrayList, new AldersGruoppeComparator());
-            for (Covid19Data covid19DataList : arrayList) {
-                System.out.println("region: " + covid19DataList.getRegion() +
-                        "\nBekræftede tilfælde: " + covid19DataList.getBekræftedeTilfælde() +
-                        "\nDøde: " + covid19DataList.getDøde() +
-                        "\nIndlagte på intensiv: " + covid19DataList.getIndlagtIntensiv() +
-                        "\nIndlagte : " + covid19DataList.getIndlagt() +
-                        "\nDato : " + covid19DataList.getDato() +
-                        "\n----------------------");
-
-            }
+            PrintData();
         } else if (userChoise == 4){
             System.exit(0);
 
