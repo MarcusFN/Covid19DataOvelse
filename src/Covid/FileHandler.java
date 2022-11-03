@@ -1,3 +1,7 @@
+package Covid;
+
+import Covid.Covid19Data;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +24,7 @@ public class FileHandler {
         return covid19DataArrayList;
     }
 
-    private Covid19Data parseCVSLine(String line) throws IOException {
+    private Covid19Data parseCVSLine(String line) {
         String[] parts = line.split(";");
 
         Covid19Data covid19Data = new Covid19Data();

@@ -1,3 +1,4 @@
+package Covid;
 
 public class Covid19Data {
     private String region;
@@ -77,6 +78,8 @@ public class Covid19Data {
     public void setDato(String dato) {
         this.dato = dato;
     }
+
+
 
 
 }
